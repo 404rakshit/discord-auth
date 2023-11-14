@@ -1,5 +1,6 @@
+import AccessForm from "./AccessForm";
+import AcquiredData from "./AcquiredData";
+
 export default function Home() {
-  return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24"></main>
-  );
+  return <main>{true ? <AccessForm /> : <AcquiredData />}</main>;
 }
