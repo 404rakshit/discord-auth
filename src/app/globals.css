@@ -76,7 +76,7 @@
 }
 
 main {
-  @apply flex flex-col max-w-6xl mx-auto max-lg:px-3 my-6;
+  @apply flex flex-col max-w-7xl mx-auto max-lg:px-3 my-6;
 }
 
 h1 {
