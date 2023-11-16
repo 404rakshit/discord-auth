@@ -1,6 +1,9 @@
-import AccessForm from "./AccessForm";
-import AcquiredData from "./AcquiredData";
+import Check from "./Check";
 
 export default function Home() {
-  return <main>{false ? <AccessForm /> : <AcquiredData />}</main>;
+  return (
+    <main>
+      <Check />
+    </main>
+  );
 }
