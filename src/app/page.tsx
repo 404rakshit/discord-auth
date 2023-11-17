@@ -1,9 +1,11 @@
-import Check from "./Check";
+"use client";
+
+import { login } from "@/lib/atoms";
+import AccessForm from "./AccessForm";
+import AcquiredData from "./AcquiredData";
+import { useAtom } from "jotai";
 
 export default function Home() {
-  return (
-    <main>
-      <Check />
-    </main>
-  );
+  const [auth, setAuth] = useAtom(login);
+  return <main>{auth ? <AcquiredData /> : <AccessForm />}</main>;
 }

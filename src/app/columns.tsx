@@ -1,18 +1,7 @@
 "use client";
 
+import { Skeleton } from "@/components/ui/skeleton";
 import { ColumnDef } from "@tanstack/react-table";
-
-import { ArrowUpDown, MoreHorizontal } from "lucide-react";
-
-import { Button } from "@/components/ui/button";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
 
 export const columns: ColumnDef<Users>[] = [
   {
@@ -118,4 +107,70 @@ export const columns: ColumnDef<Users>[] = [
   //       );
   //     },
   //   },
+];
+
+export const columnSkeleton: ColumnDef<Users>[] = [
+  {
+    accessorKey: "id",
+    header: "ID",
+    cell: ({ row }) => {
+      return <Skeleton className="h-4 w-full rounded-md" />;
+    },
+  },
+  {
+    accessorKey: "customerId",
+    header: "Customer ID",
+    cell: ({ row }) => {
+      return <Skeleton className="h-4 w-full rounded-md" />;
+    },
+  },
+  {
+    accessorKey: "generationLimit",
+    header: "Generation Lim",
+    cell: ({ row }) => {
+      return <Skeleton className="h-4 w-full rounded-md" />;
+    },
+  },
+  {
+    accessorKey: "submissionLimit",
+    header: "Submittion Lim",
+    cell: ({ row }) => {
+      return <Skeleton className="h-4 w-full rounded-md" />;
+    },
+  },
+  {
+    accessorKey: "createdAt",
+    header: "Created",
+    cell: ({ row }) => {
+      return <Skeleton className="h-4 w-full rounded-md" />;
+    },
+  },
+  {
+    accessorKey: "updatedAt",
+    header: "Updated",
+    cell: ({ row }) => {
+      return <Skeleton className="h-4 w-full rounded-md" />;
+    },
+  },
+  {
+    accessorKey: "generationCredits",
+    header: "Generation Credit",
+    cell: ({ row }) => {
+      return <Skeleton className="h-4 w-full rounded-md" />;
+    },
+  },
+  {
+    accessorKey: "adminChannelId",
+    header: "Admin Channel ID",
+    cell: ({ row }) => {
+      return <Skeleton className="h-4 w-full rounded-md" />;
+    },
+  },
+  {
+    accessorKey: "limitByRole",
+    header: "Role",
+    cell: ({ row }) => {
+      return <Skeleton className="h-4 w-full rounded-md" />;
+    },
+  },
 ];

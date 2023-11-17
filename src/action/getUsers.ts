@@ -1,14 +1,11 @@
 "use server";
 
-import client from "@/lib/postgres";
+import pool from "@/lib/postgres";
 
 async function getUsers(): Promise<Users[]> {
-  await client.connect();
-
-  const data = await client.query(`select * from "Guild";`);
-
-  await client.end();
-
+  await pool.connect();
+  const data = await pool.query(`select * from "Guild";`);
+  await pool.end();
   return data.rows;
 }
 

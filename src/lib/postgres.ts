@@ -1,6 +1,14 @@
-import { Client } from "pg";
+import { Client, Pool } from "pg";
 
-const client = new Client({
+// const client = new Client({
+//   host: "localhost",
+//   user: "postgres",
+//   port: 5432,
+//   password: "devops",
+//   database: "forecast",
+// });
+
+const pool = new Pool({
   host: "localhost",
   user: "postgres",
   port: 5432,
@@ -8,4 +16,4 @@ const client = new Client({
   database: "forecast",
 });
 
-export default client;
+export default pool;

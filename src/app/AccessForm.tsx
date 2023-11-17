@@ -19,6 +19,8 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import Alert from "@/components/alert";
+import { login } from "@/lib/atoms";
+import { useAtom } from "jotai";
 
 const formSchema = z.object({
   username: z.string().min(2).max(50),
@@ -27,6 +29,7 @@ const formSchema = z.object({
 const AccessForm = () => {
   const [deactivate, setDeactivate] = useState<boolean>(false);
   const [open, setOpen] = useState<boolean>(false);
+  const [auth, setAuth] = useAtom(login);
 
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
@@ -41,6 +44,7 @@ const AccessForm = () => {
     setTimeout(() => {
       setOpen(true);
       setDeactivate(false);
+      setAuth(true);
     }, 3000);
   }
 
