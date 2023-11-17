@@ -5,10 +5,8 @@ import { Button } from "@/components/ui/button";
 import {
   Form,
   FormControl,
-  //   FormDescription,
   FormField,
   FormItem,
-  //   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
 import { AtSign } from "lucide-react";
@@ -21,6 +19,7 @@ import { useState } from "react";
 import Alert from "@/components/alert";
 import { login } from "@/lib/atoms";
 import { useAtom } from "jotai";
+import { Icons } from "@/components/Icons";
 
 const formSchema = z.object({
   username: z.string().min(2).max(50),
@@ -69,7 +68,11 @@ const AccessForm = () => {
                 <FormControl>
                   <div className="flex gap-3 max-w-lg mx-auto">
                     <span className="h-10 px-2 py-2 border rounded-lg">
-                      <AtSign className="" />
+                      {deactivate ? (
+                        <Icons.spinner className="animate-spin" />
+                      ) : (
+                        <AtSign />
+                      )}
                     </span>
                     <Input
                       autoComplete="off"

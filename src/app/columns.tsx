@@ -3,57 +3,26 @@
 import { Skeleton } from "@/components/ui/skeleton";
 import { ColumnDef } from "@tanstack/react-table";
 
-export const columns: ColumnDef<Users>[] = [
+export const columns: ColumnDef<Person>[] = [
   {
-    accessorKey: "id",
+    accessorKey: "personid",
     header: "ID",
   },
   {
-    accessorKey: "customerId",
-    header: "Customer ID",
+    accessorKey: "lastname",
+    header: "Last Name",
   },
   {
-    accessorKey: "generationLimit",
-    header: "Generation Lim",
+    accessorKey: "firstname",
+    header: "First Name",
   },
   {
-    accessorKey: "submissionLimit",
-    header: "Submittion Lim",
+    accessorKey: "address",
+    header: "Address",
   },
   {
-    accessorKey: "createdAt",
-    header: "Created",
-    cell: ({ row }) => {
-      const date = new Date(row.getValue("createdAt"));
-      const formatted = date.toLocaleDateString();
-      return <div className="font-medium">{formatted}</div>;
-    },
-  },
-  {
-    accessorKey: "updatedAt",
-    header: "Updated",
-    cell: ({ row }) => {
-      const date = new Date(row.getValue("updatedAt"));
-      const formatted = date.toLocaleDateString();
-      return <div className="font-medium">{formatted}</div>;
-    },
-  },
-  {
-    accessorKey: "generationCredits",
-    header: "Generation Credit",
-  },
-  {
-    accessorKey: "adminChannelId",
-    header: "Admin Channel ID",
-  },
-  {
-    accessorKey: "limitByRole",
-    header: "Role",
-    cell: ({ row }) => {
-      const value = row.getValue("limitByRole");
-      if (!value) return "NULL";
-      return value;
-    },
+    accessorKey: "city",
+    header: "City",
   },
 
   //   {
@@ -109,66 +78,38 @@ export const columns: ColumnDef<Users>[] = [
   //   },
 ];
 
-export const columnSkeleton: ColumnDef<Users>[] = [
+export const columnSkeleton: ColumnDef<Person>[] = [
   {
-    accessorKey: "id",
+    accessorKey: "personid",
     header: "ID",
     cell: ({ row }) => {
       return <Skeleton className="h-4 w-full rounded-md" />;
     },
   },
   {
-    accessorKey: "customerId",
-    header: "Customer ID",
+    accessorKey: "lastname",
+    header: "Last Name",
     cell: ({ row }) => {
       return <Skeleton className="h-4 w-full rounded-md" />;
     },
   },
   {
-    accessorKey: "generationLimit",
-    header: "Generation Lim",
+    accessorKey: "firstname",
+    header: "First Name",
     cell: ({ row }) => {
       return <Skeleton className="h-4 w-full rounded-md" />;
     },
   },
   {
-    accessorKey: "submissionLimit",
-    header: "Submittion Lim",
+    accessorKey: "address",
+    header: "Address",
     cell: ({ row }) => {
       return <Skeleton className="h-4 w-full rounded-md" />;
     },
   },
   {
-    accessorKey: "createdAt",
-    header: "Created",
-    cell: ({ row }) => {
-      return <Skeleton className="h-4 w-full rounded-md" />;
-    },
-  },
-  {
-    accessorKey: "updatedAt",
-    header: "Updated",
-    cell: ({ row }) => {
-      return <Skeleton className="h-4 w-full rounded-md" />;
-    },
-  },
-  {
-    accessorKey: "generationCredits",
-    header: "Generation Credit",
-    cell: ({ row }) => {
-      return <Skeleton className="h-4 w-full rounded-md" />;
-    },
-  },
-  {
-    accessorKey: "adminChannelId",
-    header: "Admin Channel ID",
-    cell: ({ row }) => {
-      return <Skeleton className="h-4 w-full rounded-md" />;
-    },
-  },
-  {
-    accessorKey: "limitByRole",
-    header: "Role",
+    accessorKey: "city",
+    header: "City",
     cell: ({ row }) => {
       return <Skeleton className="h-4 w-full rounded-md" />;
     },

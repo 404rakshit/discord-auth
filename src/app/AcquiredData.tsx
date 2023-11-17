@@ -1,5 +1,3 @@
-"use client";
-
 import { ModeToggle } from "@/components/mode-toogle";
 import { Suspense } from "react";
 import TableData from "./TableData";

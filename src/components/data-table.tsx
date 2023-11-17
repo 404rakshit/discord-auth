@@ -23,6 +23,7 @@ import {
 import { Button } from "./ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
+import { AddModel } from "./add-model";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
@@ -53,17 +54,18 @@ export function DataTable<TData, TValue>({
 
   return (
     <div>
-      <div className="flex items-center py-4">
+      <div className="flex justify-between items-center py-4">
         <Input
-          placeholder="Filter Customer Id..."
+          placeholder="Filter First Name..."
           value={
-            (table.getColumn("customerId")?.getFilterValue() as string) ?? ""
+            (table.getColumn("firstname")?.getFilterValue() as string) ?? ""
           }
           onChange={(event) =>
-            table.getColumn("customerId")?.setFilterValue(event.target.value)
+            table.getColumn("firstname")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
         />
+        <AddModel />
       </div>
       <div className="rounded-md border">
         <Table>

@@ -9,3 +9,11 @@ type Users = {
   adminChannelId: string;
   limitByRole: string | null;
 };
+
+type Person = {
+  personid: number;
+  lastname: string;
+  firstname: string;
+  address: string;
+  city: string;
+};
