@@ -30,11 +30,6 @@ export function AddModel() {
           </DialogHeader>
           {/* Form */}
           <DataForm setModal={setModalState} />
-          {/* <DialogFooter className="sm:justify-start">
-          <DialogClose asChild>
-            
-          </DialogClose>
-        </DialogFooter> */}
         </ScrollArea>
       </DialogContent>
     </Dialog>

@@ -15,8 +15,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import addNewData from "@/action/addNewData";
 import { Dispatch, SetStateAction } from "react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 
 const formSchema = z.object({
   lastname: z.string().min(2, {
@@ -38,7 +38,7 @@ export function DataForm({
 }: {
   setModal: Dispatch<SetStateAction<boolean>>;
 }) {
-  // 1. Define your form.
+  const queryClient = useQueryClient();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -49,13 +49,30 @@ export function DataForm({
     },
   });
 
-  // 2. Define a submit handler.
   function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
     console.log(values);
-    setModal(false);
+    createProfile(values);
   }
+
+  const { mutate: createProfile, isPending: creatingNew } = useMutation({
+    mutationFn: async (data: z.infer<typeof formSchema>) => {
+      const res = await fetch("/api/addNew", {
+        method: "post",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
+      return res.json();
+    },
+    onError: (err) => {
+      console.error(err);
+    },
+    onSuccess: async (data) => {
+      console.log(data);
+      setModal(false);
+      // await new Promise((res) => setTimeout(() => res, 500));
+      queryClient.invalidateQueries({ queryKey: ["person"] });
+    },
+  });
 
   return (
     <Form {...form}>
@@ -138,7 +155,9 @@ export function DataForm({
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button disabled={creatingNew} type="submit">
+          Submit
+        </Button>
       </form>
     </Form>
   );

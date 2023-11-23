@@ -11,7 +11,7 @@ type Users = {
 };
 
 type Person = {
-  personid: number;
+  personid?: number;
   lastname: string;
   firstname: string;
   address: string;
