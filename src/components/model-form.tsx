@@ -15,12 +15,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import addData from "@/action/addData";
+import addNewData from "@/action/addNewData";
+import { Dispatch, SetStateAction } from "react";
 
 const formSchema = z.object({
-  personid: z.number().min(3, {
-    message: "Username must be at least 3 digits.",
-  }),
   lastname: z.string().min(2, {
     message: "Last Name must be at least 2 characters",
   }),
@@ -35,23 +33,15 @@ const formSchema = z.object({
   }),
 });
 
-async function clientAction(e: FormData) {
-  //   const username = e.get("username");
-  const res = await addData(e);
-
-  console.log(res);
-
-  //   if (res?.error) {
-  //     alert(res?.error);
-  //   }
-}
-
-export function DataForm() {
+export function DataForm({
+  setModal,
+}: {
+  setModal: Dispatch<SetStateAction<boolean>>;
+}) {
   // 1. Define your form.
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      personid: 0,
       firstname: "",
       lastname: "",
       address: "",
@@ -64,27 +54,12 @@ export function DataForm() {
     // Do something with the form values.
     // ✅ This will be type-safe and validated.
     console.log(values);
+    setModal(false);
   }
 
   return (
     <Form {...form}>
-      <form action={clientAction} className="space-y-8">
-        <FormField
-          control={form.control}
-          name="personid"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>Person ID</FormLabel>
-              <FormControl>
-                <Input autoComplete="off" placeholder="Enter ID" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your unique identification number.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
         <FormField
           control={form.control}
           name="lastname"

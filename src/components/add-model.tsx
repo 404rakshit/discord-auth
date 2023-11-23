@@ -11,10 +11,12 @@ import {
 } from "@/components/ui/dialog";
 import { DataForm } from "./model-form";
 import { ScrollArea } from "./ui/scroll-area";
+import { useState } from "react";
 
 export function AddModel() {
+  const [modalState, setModalState] = useState<boolean>(false);
   return (
-    <Dialog>
+    <Dialog open={modalState} onOpenChange={setModalState}>
       <DialogTrigger asChild>
         <Button variant="outline">Add Data</Button>
       </DialogTrigger>
@@ -27,7 +29,7 @@ export function AddModel() {
             </DialogDescription>
           </DialogHeader>
           {/* Form */}
-          <DataForm />
+          <DataForm setModal={setModalState} />
           {/* <DialogFooter className="sm:justify-start">
           <DialogClose asChild>
             
