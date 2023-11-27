@@ -6,7 +6,7 @@ import { ModeToggle } from "@/components/mode-toogle";
 import { DataTable } from "@/components/data-table";
 import { columnSkeleton, columns } from "./columns";
 import { useQuery } from "@tanstack/react-query";
-
+import { UserButton } from "@clerk/nextjs";
 const AcquiredData = () => {
   const { data: personData, isLoading: fetchingData } = useQuery({
     queryKey: ["person"],
@@ -19,7 +19,10 @@ const AcquiredData = () => {
     <div>
       <section className="flex justify-between">
         <h1>Acquired Data</h1>
-        <ModeToggle />
+        <span className="flex gap-2">
+          <ModeToggle />
+          <UserButton afterSignOutUrl="/" />
+        </span>
       </section>
       {fetchingData ? (
         <DataTable columns={columnSkeleton} data={Array(5).fill("1")} />

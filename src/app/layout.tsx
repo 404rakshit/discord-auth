@@ -4,6 +4,11 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import Providers from "@/provider";
 import QueryProvider from "@/lib/queryClient";
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from "@clerk/themes";
+import { Toaster } from "@/components/ui/toaster";
+import { ToastProvider } from "@/components/ui/toast";
+import ToastProviderComp from "@/components/toast-provider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,19 +23,27 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body className={inter.className}>
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-        >
-          <Providers>
-            <QueryProvider>{children}</QueryProvider>
-          </Providers>
-        </ThemeProvider>
-      </body>
-    </html>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
+      <html lang="en">
+        <body className={inter.className}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
+            <ToastProviderComp>
+              <Providers>
+                <QueryProvider>{children}</QueryProvider>
+              </Providers>
+            </ToastProviderComp>
+          </ThemeProvider>
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
