@@ -2,6 +2,7 @@
 import React from "react";
 import { columns } from "./columns";
 import { DataTable } from "@/components/data-table";
+import { auth } from "@clerk/nextjs";
 
 async function getUser(): Promise<Person[]> {
   const res = await fetch("/api/addNew", {
@@ -16,7 +17,8 @@ async function getUser(): Promise<Person[]> {
 
 const TableData = async () => {
   const data = await getUser();
-  return <DataTable columns={columns} data={data} />;
+  const { userId } = auth();
+  if (userId) return <DataTable columns={columns} data={data} />;
 };
 
 export default TableData;
